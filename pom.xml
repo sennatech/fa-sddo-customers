@@ -24,7 +24,7 @@
         <azure.functions.maven.plugin.version>1.27.0</azure.functions.maven.plugin.version>
         <azure.functions.java.library.version>3.0.0</azure.functions.java.library.version>
         <spring.cloud.function.dependencies>4.0.5</spring.cloud.function.dependencies>
-        <functionAppName>fa-sddo-backend</functionAppName>
+        <functionAppName>fa-sddo-customers</functionAppName>
         <start-class>br.com.sennatech.sddo.customers.Application</start-class>
     </properties>
 
