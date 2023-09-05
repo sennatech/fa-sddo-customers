@@ -8,6 +8,7 @@ class FaSddoCustomersApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("oi");
 	}
 
 }
