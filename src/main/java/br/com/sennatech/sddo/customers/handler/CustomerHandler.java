@@ -19,7 +19,7 @@ public class CustomerHandler {
     @Autowired
     private CustomerCreate customerCreate;
 
-    @FunctionName("HttpTriggerJava")
+    @FunctionName("customerCreate")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
