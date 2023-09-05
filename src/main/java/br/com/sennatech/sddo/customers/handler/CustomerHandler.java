@@ -10,24 +10,24 @@ import br.com.sennatech.sddo.customers.service.CustomerCreate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
+
 @Component
 public class CustomerHandler {
 
     @Autowired
     private CustomerCreate customerCreate;
 
-    @FunctionName("customerCreate")
-    public HttpResponseMessage runUserCreate(
-            @HttpTrigger(
-                    name = "req",
-                    methods = { HttpMethod.GET },
-                    authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "customers"
-            ) HttpRequestMessage<String> request,
+    @FunctionName("HttpTriggerJava")
+    public HttpResponseMessage run(
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        System.out.println("TESTE");
-        return request.createResponseBuilder(HttpStatus.CREATED).body(customerCreate.get()).build();
+        context.getLogger().info("Java HTTP trigger processed a request.");
+
+        return request.createResponseBuilder(HttpStatus.OK).body(customerCreate.get()).build();
     }
+}
 
 //    @FunctionName("userCreate")
 //    public HttpResponseMessage runUserCreate(
@@ -49,5 +49,3 @@ public class CustomerHandler {
 //            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
 //        }
 //    }
-
-}
