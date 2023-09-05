@@ -1,7 +1,6 @@
 package br.com.sennatech.sddo.customers.domain;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
