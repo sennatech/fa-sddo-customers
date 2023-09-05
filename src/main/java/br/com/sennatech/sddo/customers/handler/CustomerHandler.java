@@ -4,10 +4,17 @@ import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
+
+import br.com.sennatech.sddo.customers.service.CustomerCreate;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerHandler {
+
+    @Autowired
+    private CustomerCreate customerCreate;
 
     @FunctionName("customerCreate")
     public HttpResponseMessage runUserCreate(
@@ -19,7 +26,7 @@ public class CustomerHandler {
             ) HttpRequestMessage<String> request,
             final ExecutionContext context) {
         System.out.println("TESTE");
-        return request.createResponseBuilder(HttpStatus.CREATED).build();
+        return request.createResponseBuilder(HttpStatus.CREATED).body(customerCreate.get()).build();
     }
 
 //    @FunctionName("userCreate")
