@@ -6,20 +6,27 @@ import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
+
 @Component
 public class CustomerHandler {
 
-    @FunctionName("customerCreate")
-    public HttpResponseMessage runUserCreate(
-            @HttpTrigger(
-                    name = "req",
-                    methods = { HttpMethod.GET },
-                    authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "customers"
-            ) HttpRequestMessage<String> request,
+    @FunctionName("HttpTriggerJava")
+    public HttpResponseMessage run(
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        System.out.println("TESTE");
-        return request.createResponseBuilder(HttpStatus.CREATED).build();
+        context.getLogger().info("Java HTTP trigger processed a request.");
+
+        // Parse query parameter
+        String query = request.getQueryParameters().get("name");
+        String name = request.getBody().orElse(query);
+
+        if (name == null) {
+            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a name on the query string or in the request body").build();
+        } else {
+            return request.createResponseBuilder(HttpStatus.OK).body("Hello, " + name).build();
+        }
     }
 
 //    @FunctionName("userCreate")
