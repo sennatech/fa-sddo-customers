@@ -5,8 +5,6 @@ import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 
-import br.com.sennatech.sddo.customers.service.CustomerCreate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +13,8 @@ import java.util.Optional;
 @Component
 public class CustomerHandler {
 
-    @Autowired
-    private CustomerCreate customerCreate;
+
+
 
     @FunctionName("customerCreate")
     public HttpResponseMessage run(
@@ -24,16 +22,7 @@ public class CustomerHandler {
                     HttpMethod.POST }, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
-        try {
-            return request.createResponseBuilder(HttpStatus.OK).body(customerCreate.get()).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("===");
-            System.out.println("===");
-            System.out.println("===");
-            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
-        }
-        
+        return request.createResponseBuilder(HttpStatus.OK).body("teste 2").build();
     }
 }
 
