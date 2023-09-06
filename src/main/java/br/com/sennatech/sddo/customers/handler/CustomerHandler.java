@@ -9,6 +9,8 @@ import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import org.springframework.stereotype.Component;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Optional;
 
 @Component
@@ -21,16 +23,18 @@ public class CustomerHandler {
             @HttpTrigger(name = "req", 
                 methods = {HttpMethod.POST}, 
                 authLevel = AuthorizationLevel.FUNCTION,
-                route = "customers") HttpRequestMessage<Optional<String>> request,
+                route = "customers") HttpRequestMessage<String> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
         try {
-            var customer = mapper.readValue(request.getBody().get(), CustomerDTO.class);
+            CustomerDTO customer = mapper.readValue(request.getBody(), CustomerDTO.class);
             context.getLogger().info(customer.toString());
             return request.createResponseBuilder(HttpStatus.OK).body(customer).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            context.getLogger().info(sw.toString());
+            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
         }
     }
 }
