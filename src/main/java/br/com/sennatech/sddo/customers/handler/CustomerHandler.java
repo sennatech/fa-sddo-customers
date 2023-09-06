@@ -27,7 +27,7 @@ public class CustomerHandler {
         context.getLogger().info("Java HTTP trigger processed a request.");
         var customer = request.getBody().get();
         context.getLogger().info(customer.toString());
-        return request.createResponseBuilder(HttpStatus.OK).body(customer).build();
+        return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
     }
 }
 

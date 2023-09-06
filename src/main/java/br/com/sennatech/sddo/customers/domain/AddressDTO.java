@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressDTO {
     String street;
-    int number;
+    String number;
     String neighbourhood;
     String city;
     String state;
     String country;
-    long zipCode;
+    String zipCode;
     String complement;
 }
 
