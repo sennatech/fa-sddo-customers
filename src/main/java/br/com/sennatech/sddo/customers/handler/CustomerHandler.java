@@ -28,6 +28,7 @@ public class CustomerHandler {
             return request.createResponseBuilder(HttpStatus.OK).body(customerCreate.get()).build();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("===");
             return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
         }
         
