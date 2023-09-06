@@ -23,7 +23,7 @@ public class CustomerHandler {
                     HttpMethod.POST }, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
-        return request.createResponseBuilder(HttpStatus.OK).body(request.getBody()).build();
+        return request.createResponseBuilder(HttpStatus.OK).body(request.getBody().get()).build();
     }
 }
 
