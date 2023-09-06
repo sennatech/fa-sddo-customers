@@ -29,6 +29,8 @@ public class CustomerHandler {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("===");
+            System.out.println("===");
+            System.out.println("===");
             return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
         }
         

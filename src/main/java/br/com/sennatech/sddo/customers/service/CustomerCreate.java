@@ -8,6 +8,6 @@ public class CustomerCreate implements Supplier<String> {
 
   @Override
   public String get() {
-    return "hello world";
+    return "teste";
   }
 }
