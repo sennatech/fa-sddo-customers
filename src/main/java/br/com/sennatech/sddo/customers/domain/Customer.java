@@ -22,7 +22,7 @@ public class Customer {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -37,7 +37,7 @@ public class Customer {
     private String email;
 
     @Column(length = 2, nullable = false)
-    private String ddd;
+    private String areaCode;
 
     @Column(length = 9, nullable = false)
     private String phone;

@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public record CustomerDTO(String documentNumber,
                           String name,
-                          LocalDate birthDate,
+                          LocalDate birthdate,
                           Gender gender,
                           String login,
                           String password,
                           String email,
-                          String ddd,
+                          String areaCode,
                           String phone,
                           Address address) {
 }
