@@ -4,5 +4,5 @@ import java.time.LocalDate;
 
 public record CustomerDTO(String documentNumber,
                           String name,
-                          LocalDate birthdate){}
+                          String birthdate){}
 
