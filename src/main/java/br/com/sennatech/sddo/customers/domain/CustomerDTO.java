@@ -1,8 +1,13 @@
 package br.com.sennatech.sddo.customers.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
-public record CustomerDTO(String documentNumber,
-                          String name,
-                          LocalDate birthdate){}
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CustomerDTO{ String documentNumber; String name; String birthdate;}
 
