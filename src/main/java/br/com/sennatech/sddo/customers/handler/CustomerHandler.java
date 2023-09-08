@@ -7,6 +7,7 @@ import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
 
 import java.io.PrintWriter;
@@ -21,14 +22,16 @@ public class CustomerHandler {
 
     @FunctionName("customerCreate")
     public HttpResponseMessage run(
-            @HttpTrigger(name = "req", methods = { HttpMethod.GET,
-                    HttpMethod.POST }, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
+            @HttpTrigger(name = "req",
+                    methods = {HttpMethod.POST },
+                    authLevel = AuthorizationLevel.FUNCTION) @Valid HttpRequestMessage<Optional<CustomerDTO>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
         var customer = request.getBody().get();
         context.getLogger().info(customer.toString());
         return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
     }
+
 }
 
 
