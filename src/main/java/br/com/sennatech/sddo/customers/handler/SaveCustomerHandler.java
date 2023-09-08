@@ -21,7 +21,8 @@ public class SaveCustomerHandler {
     public HttpResponseMessage save(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.POST},
-                    authLevel = AuthorizationLevel.FUNCTION
+                    authLevel = AuthorizationLevel.FUNCTION,
+                    route = "customers/{hash}"
             ) HttpRequestMessage<Optional<CustomerDTO>> request,
             final ExecutionContext context
     ) {

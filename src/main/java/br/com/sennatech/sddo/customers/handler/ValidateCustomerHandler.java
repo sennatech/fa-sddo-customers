@@ -18,7 +18,7 @@ public class ValidateCustomerHandler {
     private final ValidateCustomer validateCustomer;
 
     @FunctionName("customerValidation")
-    public HttpResponseMessage validateCustomer(
+    public HttpResponseMessage customerValidation(
             @HttpTrigger(
                     name = "req",
                     methods = {HttpMethod.GET},
