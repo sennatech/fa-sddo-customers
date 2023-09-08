@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class GetCustomer {
+public class GetCustomerService {
 
     private final CustomerRepository repository;
     private final ConvertCustomerToCustomerResponse convertCustomerToCustomerResponse;
