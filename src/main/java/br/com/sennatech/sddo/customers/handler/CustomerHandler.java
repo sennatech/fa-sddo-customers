@@ -65,11 +65,12 @@ public class CustomerHandler {
 
     @FunctionName("userGet")
     public String get(
-            @HttpTrigger(name = "userGetRequest",
+            @HttpTrigger(name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage request,
-            @BindingName("id") String id, ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request." + id);
+                    authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}")
+            HttpRequestMessage request,
+            @BindingName("documentNumber") String documentNumber, ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
         try{
         return "teste";
         } catch (Exception e){
