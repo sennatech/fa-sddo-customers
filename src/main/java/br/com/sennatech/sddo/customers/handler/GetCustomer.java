@@ -1,7 +1,6 @@
 package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.Error;
-import br.com.sennatech.sddo.customers.service.ListFuncionariosById;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.BindingName;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class GetCustomer {
 
-    private final ListFuncionariosById listFuncionariosById;
+    private final br.com.sennatech.sddo.customers.service.GetCustomer getCustomer;
 
     @FunctionName("getCustomer")
     public HttpResponseMessage getCustomer(
@@ -30,7 +29,7 @@ public class GetCustomer {
             context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
             return request
                     .createResponseBuilder(HttpStatus.CREATED)
-                    .body(listFuncionariosById.execute(documentNumber))
+                    .body(getCustomer.execute(documentNumber))
                     .build();
         } catch (Exception e){
             return request
