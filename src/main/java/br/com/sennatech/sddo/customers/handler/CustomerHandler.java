@@ -68,9 +68,15 @@ public class CustomerHandler {
             @HttpTrigger(name = "userGetRequest",
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage request,
-            @BindingName("id") Integer id, ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request.");
-        return id.toString();
+            @BindingName("id") String id, ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request." + id);
+        try{
+        return "teste";
+        } catch (Exception e){
+            return
+                    Error.builder().message(e.getMessage())
+                    .build().toString();
+        }
     }
 }
 
