@@ -22,10 +22,16 @@ public class CustomerHandler {
                     authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
-        var customer = request.getBody().get();
-        context.getLogger().info(customer.toString());
-        addCustomer.responseConvert(customer);
-        return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
+        try {
+            var customer = request.getBody().get();
+            context.getLogger().info(customer.toString());
+            addCustomer.responseConvert(customer);
+            return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
+
+        } catch (Exception e){
+            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
+
+        }
 
     }
 
