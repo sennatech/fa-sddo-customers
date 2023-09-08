@@ -40,7 +40,7 @@ public class CustomerHandler {
     }
 
     @FunctionName("customerList")
-    public HttpResponseMessage get(
+    public HttpResponseMessage teste(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.GET },
                     authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
