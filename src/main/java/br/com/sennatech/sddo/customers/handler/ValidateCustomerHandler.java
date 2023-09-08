@@ -22,7 +22,8 @@ public class ValidateCustomerHandler {
             @HttpTrigger(
                     name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = "customers/{hash}"
             ) HttpRequestMessage request,
             @BindingName("hash") String hash,
             final ExecutionContext context) {

@@ -21,7 +21,8 @@ public class GetCustomerHandler {
     public HttpResponseMessage getCustomer(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}")
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = "customers/{documentNumber}")
             HttpRequestMessage request,
             @BindingName("documentNumber") String documentNumber, ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
