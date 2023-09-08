@@ -1,25 +1,22 @@
 package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.CustomerDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.sennatech.sddo.customers.service.AddCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
-import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Component
 public class CustomerHandler {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
-
-
+    private final AddCustomer addCustomer;
     @FunctionName("customerCreate")
     public HttpResponseMessage run(
-            @Valid
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.POST },
                     authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
@@ -27,7 +24,9 @@ public class CustomerHandler {
         context.getLogger().info("Java HTTP trigger processed a request.");
         var customer = request.getBody().get();
         context.getLogger().info(customer.toString());
+        addCustomer.responseConvert(customer);
         return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
+
     }
 
 }
