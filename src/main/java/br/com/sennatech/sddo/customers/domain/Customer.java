@@ -24,8 +24,7 @@ public class Customer {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private String gender;
 
     @Column(length = 50, nullable = false)
     private String login;
