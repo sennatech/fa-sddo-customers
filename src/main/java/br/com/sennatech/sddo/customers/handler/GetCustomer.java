@@ -1,6 +1,6 @@
 package br.com.sennatech.sddo.customers.handler;
 
-import br.com.sennatech.sddo.customers.domain.error.Error;
+import br.com.sennatech.sddo.customers.domain.dto.Error;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.BindingName;
