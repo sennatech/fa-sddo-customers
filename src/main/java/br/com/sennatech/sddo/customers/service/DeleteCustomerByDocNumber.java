@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class DeleteFuncionariosById {
+public class DeleteCustomerByDocNumber {
 
     private final CustomerRepository repository;
 
-    public void execute(String id){
-        repository.deleteById(id);
+    public void execute(String documentNumber){
+        repository.deleteByDocumentNumber(documentNumber);
     }
 }

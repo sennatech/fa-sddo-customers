@@ -1,7 +1,7 @@
 package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.Error;
-import br.com.sennatech.sddo.customers.service.ListFuncionariosById;
+import br.com.sennatech.sddo.customers.service.DeleteCustomerByDocNumber;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.BindingName;
@@ -12,23 +12,20 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class GetCustomer {
-
-
-    private final ListFuncionariosById listFuncionariosById;
-
-    @FunctionName("getCustomer")
-    public HttpResponseMessage getCustomer(
+public class DeleteCustomerHandler {
+    private  final DeleteCustomerByDocNumber delete;
+    @FunctionName("deleteCustomer")
+    public HttpResponseMessage deleteCustomer(
             @HttpTrigger(name = "req",
-                    methods = {HttpMethod.GET},
+                    methods = {HttpMethod.DELETE},
                     authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}")
             HttpRequestMessage request,
             @BindingName("documentNumber") String documentNumber, ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
         try{
+            delete.execute(documentNumber);
             return request
                     .createResponseBuilder(HttpStatus.OK)
-                    .body(listFuncionariosById.execute(documentNumber))
                     .build();
         } catch (Exception e){
             return request
@@ -38,8 +35,3 @@ public class GetCustomer {
         }
     }
 }
-
-
-
-
-
