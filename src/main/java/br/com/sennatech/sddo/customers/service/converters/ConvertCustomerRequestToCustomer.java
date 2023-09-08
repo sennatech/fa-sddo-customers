@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Component
 @AllArgsConstructor
@@ -17,9 +16,9 @@ public class ConvertCustomerRequestToCustomer {
 
     public Customer convert(CustomerDTO request){
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
         final var customer = mapper.map(request, Customer.class);
-        customer.setBirthdate( LocalDate.parse(request.getBirthdate(), formatter));
+        customer.setBirthdate( LocalDate.parse(request.getBirthdate()));
         return customer;
     }
 

@@ -1,6 +1,7 @@
 package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.Error;
 import br.com.sennatech.sddo.customers.service.AddCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
@@ -29,7 +30,8 @@ public class CustomerHandler {
             return request.createResponseBuilder(HttpStatus.CREATED).body(customer).build();
 
         } catch (Exception e){
-            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();
+
+            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(Error.builder().message(e.getMessage())).build();
 
         }
 
