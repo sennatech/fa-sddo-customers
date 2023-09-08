@@ -10,10 +10,9 @@ import com.microsoft.azure.functions.annotation.HttpTrigger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
+@RequiredArgsConstructor
 public class GetCustomer {
-
 
     private final ListFuncionariosById listFuncionariosById;
 
@@ -21,11 +20,14 @@ public class GetCustomer {
     public HttpResponseMessage getCustomer(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}")
-            HttpRequestMessage request,
-            @BindingName("documentNumber") String documentNumber, ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = "customers/{documentNumber}"
+            ) HttpRequestMessage request,
+            @BindingName("documentNumber") String documentNumber,
+            ExecutionContext context
+    ) {
         try{
+            context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
             return request
                     .createResponseBuilder(HttpStatus.CREATED)
                     .body(listFuncionariosById.execute(documentNumber))

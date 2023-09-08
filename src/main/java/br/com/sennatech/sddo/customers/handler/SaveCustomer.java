@@ -2,7 +2,6 @@ package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.CustomerDTO;
 import br.com.sennatech.sddo.customers.domain.Error;
-import br.com.sennatech.sddo.customers.service.AddCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
@@ -11,21 +10,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-@RequiredArgsConstructor
+
 @Component
+@RequiredArgsConstructor
 public class SaveCustomer {
 
-    private final AddCustomer addCustomer;
+    private final br.com.sennatech.sddo.customers.service.SaveCustomer saveCustomer;
     @FunctionName("customerCreate")
     public HttpResponseMessage save(
-            @HttpTrigger(name = "req",
+            @HttpTrigger(
+                    name = "req",
                     methods = {HttpMethod.POST },
-                    authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,
-            final ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request.");
+                    authLevel = AuthorizationLevel.FUNCTION
+            ) HttpRequestMessage<Optional<CustomerDTO>> request,
+            final ExecutionContext context
+    ) {
         try {
+            context.getLogger().info("Java HTTP trigger processed a request.");
             var customer = request.getBody().get();
-            addCustomer.responseConvert(customer);
+            saveCustomer.responseConvert(customer);
             return request
                     .createResponseBuilder(HttpStatus.CREATED)
                     .body(customer)
@@ -37,7 +40,6 @@ public class SaveCustomer {
                     .build();
         }
     }
-
 }
 
 

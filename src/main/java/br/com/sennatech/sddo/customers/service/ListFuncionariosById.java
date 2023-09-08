@@ -14,7 +14,9 @@ public class ListFuncionariosById {
     private final CustomerRepository repository;
     private final ConvertCustomerToCustomerResponse convertCustomerToCustomerResponse;
     public CustomerDTO execute(String id){
-        final var customer = repository.findByDocumentNumber(id).orElseThrow(() ->new EntityNotFoundException("Desculpe, dado não encontrado."));
-        return convertCustomerToCustomerResponse.responseConvert(customer);
+        final var customer = repository
+                .findByDocumentNumber(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found."));
+        return convertCustomerToCustomerResponse.convert(customer);
     }
 }

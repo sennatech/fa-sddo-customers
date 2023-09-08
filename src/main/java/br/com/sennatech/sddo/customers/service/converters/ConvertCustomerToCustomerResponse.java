@@ -12,7 +12,7 @@ public class ConvertCustomerToCustomerResponse {
 
     private final ModelMapper mapper;
 
-    public CustomerDTO responseConvert(Customer customer) {
+    public CustomerDTO convert(Customer customer) {
         return mapper.map(customer, CustomerDTO.class);
     }
 }

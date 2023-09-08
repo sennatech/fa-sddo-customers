@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AddCustomer {
+public class SaveCustomer {
 
     private final ConvertCustomerRequestToCustomer convertRequestToCustomer;
     private final CustomerRepository repository;
@@ -17,7 +17,6 @@ public class AddCustomer {
 
     public CustomerDTO responseConvert(CustomerDTO request){
         final var customer = convertRequestToCustomer.convert(request);
-        return convertCustomerToResponse.responseConvert(repository.save(customer));
+        return convertCustomerToResponse.convert(repository.save(customer));
     }
-
 }
