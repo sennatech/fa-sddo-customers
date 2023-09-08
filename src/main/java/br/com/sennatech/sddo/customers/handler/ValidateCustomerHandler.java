@@ -17,13 +17,12 @@ public class ValidateCustomerHandler {
 
     private final ValidateCustomer validateCustomer;
 
-    @FunctionName("customer-validation")
+    @FunctionName("customerValidation")
     public HttpResponseMessage validateCustomer(
             @HttpTrigger(
                     name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "customer-validation/{hash}"
+                    authLevel = AuthorizationLevel.ANONYMOUS
             ) HttpRequestMessage request,
             @BindingName("hash") String hash,
             final ExecutionContext context) {
