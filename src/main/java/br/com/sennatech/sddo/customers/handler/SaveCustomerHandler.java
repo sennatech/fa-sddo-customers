@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SaveCustomerHandler {
 
     private final SaveCustomer saveCustomer;
-    @FunctionName("customerCreate")
+    @FunctionName("customer-creation")
     public HttpResponseMessage save(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.POST},
@@ -41,8 +41,4 @@ public class SaveCustomerHandler {
         }
     }
 }
-
-
-
-
 
