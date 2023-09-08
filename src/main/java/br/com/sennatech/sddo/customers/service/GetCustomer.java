@@ -13,6 +13,7 @@ public class GetCustomer {
 
     private final CustomerRepository repository;
     private final ConvertCustomerToCustomerResponse convertCustomerToCustomerResponse;
+
     public CustomerDTO execute(String id){
         final var customer = repository
                 .findByDocumentNumber(id)

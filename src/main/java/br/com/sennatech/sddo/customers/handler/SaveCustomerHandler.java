@@ -2,6 +2,7 @@ package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.domain.dto.Error;
+import br.com.sennatech.sddo.customers.service.SaveCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
@@ -13,14 +14,13 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class SaveCustomer {
+public class SaveCustomerHandler {
 
-    private final br.com.sennatech.sddo.customers.service.SaveCustomer saveCustomer;
+    private final SaveCustomer saveCustomer;
     @FunctionName("customerCreate")
     public HttpResponseMessage save(
-            @HttpTrigger(
-                    name = "req",
-                    methods = {HttpMethod.POST },
+            @HttpTrigger(name = "req",
+                    methods = {HttpMethod.POST},
                     authLevel = AuthorizationLevel.FUNCTION
             ) HttpRequestMessage<Optional<CustomerDTO>> request,
             final ExecutionContext context
@@ -28,10 +28,10 @@ public class SaveCustomer {
         try {
             context.getLogger().info("Java HTTP trigger processed a request.");
             var customer = request.getBody().get();
-            saveCustomer.responseConvert(customer);
+            var savedCustomer = saveCustomer.responseConvert(customer);
             return request
                     .createResponseBuilder(HttpStatus.CREATED)
-                    .body(customer)
+                    .body(savedCustomer)
                     .build();
         } catch (Exception e){
             return request

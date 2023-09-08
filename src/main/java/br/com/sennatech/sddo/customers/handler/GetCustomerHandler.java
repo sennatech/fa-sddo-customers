@@ -1,6 +1,7 @@
 package br.com.sennatech.sddo.customers.handler;
 
 import br.com.sennatech.sddo.customers.domain.dto.Error;
+import br.com.sennatech.sddo.customers.service.GetCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.BindingName;
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class GetCustomer {
+public class GetCustomerHandler {
 
-    private final br.com.sennatech.sddo.customers.service.GetCustomer getCustomer;
+    private final GetCustomer getCustomer;
 
     @FunctionName("getCustomer")
     public HttpResponseMessage getCustomer(
