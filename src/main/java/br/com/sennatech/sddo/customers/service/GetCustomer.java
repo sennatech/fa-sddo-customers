@@ -1,6 +1,6 @@
 package br.com.sennatech.sddo.customers.service;
 
-import br.com.sennatech.sddo.customers.domain.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.repository.CustomerRepository;
 import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerToCustomerResponse;
 import jakarta.persistence.EntityNotFoundException;

@@ -1,7 +1,7 @@
 package br.com.sennatech.sddo.customers.service.converters;
 
 import br.com.sennatech.sddo.customers.domain.Customer;
-import br.com.sennatech.sddo.customers.domain.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
