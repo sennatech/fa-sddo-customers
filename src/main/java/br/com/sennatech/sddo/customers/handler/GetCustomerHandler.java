@@ -19,7 +19,8 @@ public class GetCustomerHandler {
 
     @FunctionName("getCustomer")
     public HttpResponseMessage getCustomer(
-            @HttpTrigger(name = "req",
+            @HttpTrigger(
+                    name = "req",
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS,
                     route = "customers/{documentNumber}")
