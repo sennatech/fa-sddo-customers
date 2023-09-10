@@ -23,7 +23,8 @@ public class GetCustomersHandler {
             @HttpTrigger(
                     name = "req",
                     methods = {HttpMethod.GET},
-                    authLevel = AuthorizationLevel.ANONYMOUS
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = "customers"
             ) HttpRequestMessage request,
             ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
