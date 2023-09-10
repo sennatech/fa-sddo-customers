@@ -14,10 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class GetCustomerHandler {
 
-
     private final GetCustomer getCustomer;
 
-    @FunctionName("getCustomer")
+    @FunctionName("customerList")
     public HttpResponseMessage getCustomer(
             @HttpTrigger(
                     name = "req",
@@ -40,8 +39,3 @@ public class GetCustomerHandler {
         }
     }
 }
-
-
-
-
-

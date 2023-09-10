@@ -18,7 +18,7 @@ public class GetCustomersHandler {
 
     private final GetCustomers getCustomers;
 
-    @FunctionName("getCustomers")
+    @FunctionName("customersList")
     public HttpResponseMessage getCustomer(
             @HttpTrigger(
                     name = "req",
