@@ -2,8 +2,7 @@ package br.com.sennatech.sddo.customers.service;
 
 import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.repository.CustomerRepository;
-import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerRequestToCustomer;
-import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerToCustomerResponse;
+import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerDTOToCustomer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SaveCustomer {
 
-    private final ConvertCustomerRequestToCustomer convertRequestToCustomer;
+    private final ConvertCustomerDTOToCustomer convertRequestToCustomer;
     private final CustomerRepository repository;
     private final ConvertCustomerToCustomerResponse convertCustomerToResponse;
 

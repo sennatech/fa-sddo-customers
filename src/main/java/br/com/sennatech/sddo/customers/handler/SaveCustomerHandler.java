@@ -18,7 +18,7 @@ public class SaveCustomerHandler {
 
     private final SaveCustomer saveCustomer;
     @FunctionName("customerCreation")
-    public HttpResponseMessage save(
+    public HttpResponseMessage saveCustomer(
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.POST},
                     authLevel = AuthorizationLevel.FUNCTION,

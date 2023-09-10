@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
-public class ConvertCustomerRequestToCustomer {
+public class ConvertCustomerDTOToCustomer {
 
     private final ModelMapper mapper;
 
