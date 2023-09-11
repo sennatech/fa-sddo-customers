@@ -20,7 +20,7 @@ public class ValidateCustomer {
         final var email = splitDecodedHash[0];
         final var password = splitDecodedHash[1];
 
-        final var customer = repository.findByEmail(email).orElseThrow(() -> new RuntimeException("Customer not found" + email + "  " + password));
+        final var customer = repository.findByEmail(email).orElseThrow(() -> new RuntimeException("Customer " + email + " not found"));
         if (!customer.getPassword().equals(password)) {
             throw new RuntimeException("Wrong password.");
         }

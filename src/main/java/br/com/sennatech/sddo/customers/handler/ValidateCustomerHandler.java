@@ -23,7 +23,7 @@ public class ValidateCustomerHandler {
                     name = "req",
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "customers/{hash}"
+                    route = "customers-validation/{hash}"
             ) HttpRequestMessage request,
             @BindingName("hash") String hash,
             final ExecutionContext context) {
