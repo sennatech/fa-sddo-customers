@@ -34,7 +34,7 @@ public class UpdateCustomerHandler {
             var customer = request.getBody().get();
             var updatedCustomer = updateCustomer.execute(documentNumber, customer);
             return request
-                    .createResponseBuilder(HttpStatus.CREATED)
+                    .createResponseBuilder(HttpStatus.OK)
                     .body(updatedCustomer)
                     .build();
         } catch (Exception e){
