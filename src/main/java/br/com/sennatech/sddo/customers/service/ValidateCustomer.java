@@ -1,5 +1,6 @@
 package br.com.sennatech.sddo.customers.service;
 
+import br.com.sennatech.sddo.customers.domain.dto.InvalidCredentialException;
 import br.com.sennatech.sddo.customers.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,9 @@ public class ValidateCustomer {
         final var email = splitDecodedHash[0];
         final var password = splitDecodedHash[1];
 
-        final var customer = repository.findByEmail(email).orElseThrow(() -> new RuntimeException("Customer " + email + " not found"));
+        final var customer = repository.findByEmail(email).orElseThrow(() -> new InvalidCredentialException("Customer " + email + " not found"));
         if (!customer.getPassword().equals(password)) {
-            throw new RuntimeException("Wrong password.");
+            throw new InvalidCredentialException("Wrong password.");
         }
     }
 }
