@@ -15,7 +15,7 @@ public class SaveCustomer {
     private final CustomerRepository repository;
     private final ConvertCustomerToCustomerDTO convertCustomerToResponse;
 
-    public CustomerDTO responseConvert(CustomerDTO request){
+    public CustomerDTO execute(CustomerDTO request){
         final var customer = convertRequestToCustomer.convert(request);
         return convertCustomerToResponse.convert(repository.save(customer));
     }

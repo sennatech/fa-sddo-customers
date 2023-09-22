@@ -3,8 +3,10 @@ package br.com.sennatech.sddo.customers.handler;
 import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.domain.dto.Error;
 import br.com.sennatech.sddo.customers.service.SaveCustomer;
+import br.com.sennatech.sddo.customers.service.UpdateCustomer;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
+import com.microsoft.azure.functions.annotation.BindingName;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import lombok.RequiredArgsConstructor;
@@ -14,25 +16,26 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class SaveCustomerHandler {
+public class UpdateCustomerHandler {
 
-    private final SaveCustomer saveCustomer;
-    @FunctionName("customerCreation")
-    public HttpResponseMessage saveCustomer(
+    private final UpdateCustomer updateCustomer;
+    @FunctionName("customerUpdate")
+    public HttpResponseMessage updateCustomer(
             @HttpTrigger(name = "req",
-                    methods = {HttpMethod.POST},
+                    methods = {HttpMethod.PUT},
                     authLevel = AuthorizationLevel.FUNCTION,
-                    route = "customers"
+                    route = "customers/{documentNumber}"
             ) HttpRequestMessage<Optional<CustomerDTO>> request,
+            @BindingName("documentNumber") String documentNumber,
             final ExecutionContext context
     ) {
         try {
             context.getLogger().info("Java HTTP trigger processed a request.");
             var customer = request.getBody().get();
-            var savedCustomer = saveCustomer.execute(customer);
+            var updatedCustomer = updateCustomer.execute(documentNumber, customer);
             return request
-                    .createResponseBuilder(HttpStatus.CREATED)
-                    .body(savedCustomer)
+                    .createResponseBuilder(HttpStatus.OK)
+                    .body(updatedCustomer)
                     .build();
         } catch (Exception e){
             return request
