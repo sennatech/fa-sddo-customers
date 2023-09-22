@@ -13,7 +13,6 @@ public class CustomerDTO{
     String birthdate;
     String gender;
     String login;
-    String password;
     String email;
     String areaCode;
     String phone;

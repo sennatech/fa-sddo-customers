@@ -28,7 +28,7 @@ public class GetCustomerHandler {
         context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);
         try{
             return request
-                    .createResponseBuilder(HttpStatus.CREATED)
+                    .createResponseBuilder(HttpStatus.OK)
                     .body(getCustomer.execute(documentNumber))
                     .build();
         } catch (Exception e){
