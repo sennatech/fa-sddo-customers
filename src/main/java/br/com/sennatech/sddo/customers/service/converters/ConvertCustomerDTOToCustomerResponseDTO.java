@@ -7,9 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
-@Data
+@Component
 public class ConvertCustomerDTOToCustomerResponseDTO {
 
     private final ModelMapper mapper;
