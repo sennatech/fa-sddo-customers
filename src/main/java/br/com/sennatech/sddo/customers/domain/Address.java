@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class Address {
     private String street;
-    private int number;
+    private String number;
     private String neighbourhood;
     private String city;
     private String state;
     private String country;
-    private long zipCode;
+    private String zipCode;
     private String complement;
 }
