@@ -16,8 +16,9 @@ public class ConvertPassordRequestToPasswordDTO {
 
     private final ModelMapper mapper;
 
-    public PasswordDTO convert(PasswordRequestDTO request){
-        return mapper.map(request, PasswordDTO.class);
+    public PasswordDTO convert(PasswordRequestDTO request) {
+        PasswordDTO passwordDTO = new PasswordDTO(request.getNewPassword());
+        return passwordDTO;
     }
-    }
+}
 

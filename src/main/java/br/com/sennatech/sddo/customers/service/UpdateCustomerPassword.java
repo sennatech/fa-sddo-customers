@@ -22,8 +22,10 @@ public class UpdateCustomerPassword {
     private final CustomerRepository repository;
     @Transactional
     public PasswordDTO execute(String documentNumber,PasswordRequestDTO request){
-        repository.findById(documentNumber).orElseThrow(() -> new InvalidCredentialException("Customer not found."));
+        Customer customer = repository.findById(documentNumber).orElseThrow(() -> new InvalidCredentialException("Customer not Found"));
+        if (customer.getPassword() == request.getOldPassword()){
         PasswordDTO password = convertPassordRequestToPasswordDTO.convert(request);
-        return password;
+        return password;}
+        else throw new InvalidCredentialException("Wrong password");
     }
 }
