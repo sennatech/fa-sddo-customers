@@ -18,14 +18,15 @@ import org.springframework.stereotype.Service;
 public class UpdateCustomerPassword {
 
     private final ConvertPassordRequestToPasswordDTO convertPassordRequestToPasswordDTO;
-    private final ConvertCustomerToCustomerDTO convertCustomerToCustomerDTO;
     private final CustomerRepository repository;
+
     @Transactional
-    public PasswordDTO execute(String documentNumber,PasswordRequestDTO request){
+    public PasswordDTO execute(String documentNumber, PasswordRequestDTO request) {
         Customer customer = repository.findById(documentNumber).orElseThrow(() -> new InvalidCredentialException("Customer not Found"));
-        if (customer.getPassword() == request.getOldPassword()){
-        PasswordDTO password = convertPassordRequestToPasswordDTO.convert(request);
-        return password;}
-        else throw new InvalidCredentialException("Wrong password");
+        if (customer.getPassword().equals(request.getOldPassword())) {
+            PasswordDTO passwordDTO = convertPassordRequestToPasswordDTO.convert(request);
+            customer.setPassword(passwordDTO.getPassword());
+            return passwordDTO;
+        } else throw new InvalidCredentialException("Wrong password");
     }
 }
