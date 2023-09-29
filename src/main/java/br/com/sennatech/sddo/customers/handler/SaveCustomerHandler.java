@@ -3,6 +3,7 @@ package br.com.sennatech.sddo.customers.handler;
 import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.domain.dto.Error;
 import br.com.sennatech.sddo.customers.service.SaveCustomer;
+import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerDTOToCustomerResponseDTO;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class SaveCustomerHandler {
 
     private final SaveCustomer saveCustomer;
+    private final ConvertCustomerDTOToCustomerResponseDTO convertRequestToDTO;
     @FunctionName("customerCreation")
     public HttpResponseMessage saveCustomer(
             @HttpTrigger(name = "req",
@@ -30,6 +32,7 @@ public class SaveCustomerHandler {
             context.getLogger().info("Java HTTP trigger processed a request.");
             var customer = request.getBody().get();
             var savedCustomer = saveCustomer.execute(customer);
+            var responseSavedCustomer = convertRequestToDTO.convert(savedCustomer);
             return request
                     .createResponseBuilder(HttpStatus.CREATED)
                     .body(savedCustomer)
