@@ -23,7 +23,7 @@ public class UpdateCustomerPasswordHandler {
             @HttpTrigger(name = "req",
                     methods = {HttpMethod.PUT},
                     authLevel = AuthorizationLevel.FUNCTION,
-                    route = "users/password/{documentNumber}"
+                    route = "customer/password/{documentNumber}"
             ) HttpRequestMessage<Optional<PasswordRequestDTO>> request,
             @BindingName("documentNumber") String documentNumber,
             final ExecutionContext context
