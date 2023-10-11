@@ -4,12 +4,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.sennatech.sddo.users</groupId>
-    <artifactId>fa-sddo-users</artifactId>
+    <groupId>br.com.sennatech.sddo.customers</groupId>
+    <artifactId>fa-sddo-customers</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>SDDO Users module</name>
+    <name>SDDO Customers module</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -44,8 +44,8 @@
         <azure.functions.maven.plugin.version>1.27.0</azure.functions.maven.plugin.version>
         <azure.functions.java.library.version>3.0.0</azure.functions.java.library.version>
         <spring.cloud.function.dependencies>4.0.5</spring.cloud.function.dependencies>
-        <functionAppName>fa-sddo-users</functionAppName>
-        <start-class>br.com.sennatech.sddo.users.Application</start-class>
+        <functionAppName>fa-sddo-customers</functionAppName>
+        <start-class>br.com.sennatech.sddo.customers.Application</start-class>
     </properties>
 
     <dependencies>
