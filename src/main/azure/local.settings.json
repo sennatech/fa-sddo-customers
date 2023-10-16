@@ -6,6 +6,9 @@
     "FUNCTIONS_EXTENSION_VERSION": "~4",
     "AzureWebJobsDashboard": "",
     "AzureEventHubConnection": "Endpoint=sb://eh-sddo-backend.servicebus.windows.net/;SharedAccessKeyName=CoveragesAccessKey;SharedAccessKey=kkHLOSGq/gW9WWkJoG/mcZUcMaPdlToBU+AEhM7IWSU=",
-    "origin": "Seguratech"
+    "origin": "Seguratech",
+    "RECOVERY_HOSTNAME": "http://localhost:4200/alterar-senha",
+    "EXPIRATION_TIME_IN_MINUTES": "5",
+    "EMAIL_FROM": "enviosenna@sennatech.com.br"
   }
 }
