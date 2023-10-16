@@ -20,7 +20,7 @@ public class CustomersValidationHandler {
   @Autowired
   private CustomerService customerService;
 
-  @FunctionName("user-validate")
+  @FunctionName("customers-validate")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
           HttpMethod.GET }, authLevel = AuthorizationLevel.ANONYMOUS, route = "customers-validation/{hash}") HttpRequestMessage<String> request,
