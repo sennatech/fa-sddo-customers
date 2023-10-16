@@ -21,7 +21,7 @@ public class ValidateRecoveryHashHandler {
   @Autowired
   private PasswordRecoverService service;
 
-  @FunctionName("validate-recovery-hash")
+  @FunctionName("customers-recovery-hash-validate")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
           HttpMethod.GET}, authLevel = AuthorizationLevel.FUNCTION, route = "customers/password/hash-validation/{hash}") HttpRequestMessage<Optional<String>> request,

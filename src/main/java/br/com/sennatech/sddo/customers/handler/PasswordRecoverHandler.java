@@ -20,7 +20,7 @@ public class PasswordRecoverHandler {
   @Autowired
   private PasswordRecoverService service;
 
-  @FunctionName("recover-password")
+  @FunctionName("customers-password-recovery")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
           HttpMethod.PUT }, authLevel = AuthorizationLevel.FUNCTION, route = "customers/password/recovery/{hash}") HttpRequestMessage<RecoveryDTO> request,
