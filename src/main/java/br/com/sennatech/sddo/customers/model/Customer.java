@@ -2,7 +2,10 @@ package br.com.sennatech.sddo.customers.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "customers")
@@ -14,9 +17,9 @@ public class Customer {
     @Column(length = 255, nullable = false)
     private String name;
 
-    @Column(nullable = false, columnDefinition = "DATE")
-    @Temporal(TemporalType.DATE)
-    private Date birthdate;
+    @Column(nullable = false, columnDefinition = "DATE DEFAULT '2003-01-01'")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthdate;
 
     private String gender;
 

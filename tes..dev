@@ -1,0 +1,474 @@
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/Application.java b/src/main/java/br/com/sennatech/sddo/customers/Application.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..071aa39[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/Application.java[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers;[m
+[32m+[m
+[32m+[m[32mimport org.springframework.boot.SpringApplication;[m
+[32m+[m[32mimport org.springframework.boot.autoconfigure.SpringBootApplication;[m
+[32m+[m
+[32m+[m[32m@SpringBootApplication[m
+[32m+[m[32mpublic class Application {[m
+[32m+[m
+[32m+[m	[32mpublic static void main(String[] args) {[m
+[32m+[m		[32mSpringApplication.run(Application.class, args);[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/AddressDTO.java b/src/main/java/br/com/sennatech/sddo/customers/domain/AddressDTO.java[m
+[1msimilarity index 86%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/domain/dto/AddressDTO.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/domain/AddressDTO.java[m
+[1mindex 7dbffc7..2c20e8d 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/AddressDTO.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/domain/AddressDTO.java[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-package br.com.sennatech.sddo.customers.domain.dto;[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers.domain;[m
+ [m
+ [m
+ import lombok.AllArgsConstructor;[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/domain/Customer.java b/src/main/java/br/com/sennatech/sddo/customers/domain/Customer.java[m
+[1mindex 70afc5c..c4c5347 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/domain/Customer.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/domain/Customer.java[m
+[36m@@ -1,7 +1,9 @@[m
+ package br.com.sennatech.sddo.customers.domain;[m
+ [m
+ import jakarta.persistence.*;[m
+[32m+[m[32mimport lombok.AllArgsConstructor;[m
+ import lombok.Data;[m
+[32m+[m[32mimport lombok.NoArgsConstructor;[m
+ import org.springframework.format.annotation.DateTimeFormat;[m
+ [m
+ import java.time.LocalDate;[m
+[36m@@ -9,6 +11,8 @@[m [mimport java.time.LocalDate;[m
+ @Entity[m
+ @Table(name = "customers")[m
+ @Data[m
+[32m+[m[32m@AllArgsConstructor[m
+[32m+[m[32m@NoArgsConstructor[m
+ public class Customer {[m
+     @Id[m
+     private String documentNumber;[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/CustomerDTO.java b/src/main/java/br/com/sennatech/sddo/customers/domain/CustomerDTO.java[m
+[1msimilarity index 87%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/domain/dto/CustomerDTO.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/domain/CustomerDTO.java[m
+[1mindex 1d3a6da..a644633 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/CustomerDTO.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/domain/CustomerDTO.java[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-package br.com.sennatech.sddo.customers.domain.dto;[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers.domain;[m
+ [m
+ import lombok.AllArgsConstructor;[m
+ import lombok.Data;[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/Error.java b/src/main/java/br/com/sennatech/sddo/customers/domain/Error.java[m
+[1msimilarity index 68%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/domain/dto/Error.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/domain/Error.java[m
+[1mindex 6bbdc12..be1d109 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/domain/dto/Error.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/domain/Error.java[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-package br.com.sennatech.sddo.customers.domain.dto;[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers.domain;[m
+ [m
+ import lombok.Builder;[m
+ import lombok.Data;[m
+[36m@@ -7,4 +7,5 @@[m [mimport lombok.Data;[m
+ @Builder[m
+ public class Error {[m
+     private String message;[m
+[32m+[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/domain/Teste.java b/src/main/java/br/com/sennatech/sddo/customers/domain/Teste.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9350817[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/domain/Teste.java[m
+[36m@@ -0,0 +1,14 @@[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers.domain;[m
+[32m+[m
+[32m+[m[32mimport java.time.LocalDate;[m
+[32m+[m[32mimport java.time.format.DateTimeFormatter;[m
+[32m+[m
+[32m+[m[32mpublic class Teste {[m
+[32m+[m[32m    public static void main(String[] args) {[m
+[32m+[m[32m        String data = "1992-01-01";[m
+[32m+[m[32m        LocalDate teste ;[m
+[32m+[m[32m        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");[m
+[32m+[m[32m        teste = LocalDate.parse(data);[m
+[32m+[m[32m        System.out.println(teste);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomerHandler.java b/src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomer.java[m
+[1msimilarity index 76%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomerHandler.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomer.java[m
+[1mindex dbb8a32..09071e4 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomerHandler.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/handler/GetCustomer.java[m
+[36m@@ -1,7 +1,7 @@[m
+ package br.com.sennatech.sddo.customers.handler;[m
+ [m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.Error;[m
+[31m-import br.com.sennatech.sddo.customers.service.GetCustomer;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.Error;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.service.ListFuncionariosById;[m
+ import com.microsoft.azure.functions.*;[m
+ import com.microsoft.azure.functions.annotation.AuthorizationLevel;[m
+ import com.microsoft.azure.functions.annotation.BindingName;[m
+[36m@@ -12,29 +12,28 @@[m [mimport org.springframework.stereotype.Component;[m
+ [m
+ @RequiredArgsConstructor[m
+ @Component[m
+[31m-public class GetCustomerHandler {[m
+[32m+[m[32mpublic class GetCustomer {[m
+ [m
+ [m
+[31m-    private final GetCustomer getCustomer;[m
+[32m+[m[32m    private final ListFuncionariosById listFuncionariosById;[m
+ [m
+     @FunctionName("getCustomer")[m
+     public HttpResponseMessage getCustomer([m
+             @HttpTrigger(name = "req",[m
+                     methods = {HttpMethod.GET},[m
+[31m-                    authLevel = AuthorizationLevel.ANONYMOUS,[m
+[31m-                    route = "customers/{documentNumber}")[m
+[32m+[m[32m                    authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}")[m
+             HttpRequestMessage request,[m
+             @BindingName("documentNumber") String documentNumber, ExecutionContext context) {[m
+         context.getLogger().info("Java HTTP trigger processed a request." + documentNumber);[m
+         try{[m
+             return request[m
+                     .createResponseBuilder(HttpStatus.CREATED)[m
+[31m-                    .body(getCustomer.execute(documentNumber))[m
+[32m+[m[32m                    .body(listFuncionariosById.execute(documentNumber))[m
+                     .build();[m
+         } catch (Exception e){[m
+             return request[m
+                     .createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR)[m
+[31m-                    .body(Error.builder().message(e.getMessage()).build())[m
+[32m+[m[32m                    .body(Error.builder().message(e.getMessage()))[m
+                     .build();[m
+         }[m
+     }[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomerHandler.java b/src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomer.java[m
+[1msimilarity index 55%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomerHandler.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomer.java[m
+[1mindex b9c5fdf..db313a6 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomerHandler.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/handler/SaveCustomer.java[m
+[36m@@ -1,8 +1,8 @@[m
+ package br.com.sennatech.sddo.customers.handler;[m
+ [m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;[m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.Error;[m
+[31m-import br.com.sennatech.sddo.customers.service.SaveCustomer;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.CustomerDTO;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.Error;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.service.AddCustomer;[m
+ import com.microsoft.azure.functions.*;[m
+ import com.microsoft.azure.functions.annotation.AuthorizationLevel;[m
+ import com.microsoft.azure.functions.annotation.FunctionName;[m
+[36m@@ -11,28 +11,24 @@[m [mimport lombok.RequiredArgsConstructor;[m
+ import org.springframework.stereotype.Component;[m
+ [m
+ import java.util.Optional;[m
+[31m-[m
+[31m-@Component[m
+ @RequiredArgsConstructor[m
+[31m-public class SaveCustomerHandler {[m
+[32m+[m[32m@Component[m
+[32m+[m[32mpublic class SaveCustomer {[m
+ [m
+[31m-    private final SaveCustomer saveCustomer;[m
+[31m-    @FunctionName("customerCreation")[m
+[32m+[m[32m    private final AddCustomer addCustomer;[m
+[32m+[m[32m    @FunctionName("customerCreate")[m
+     public HttpResponseMessage save([m
+             @HttpTrigger(name = "req",[m
+[31m-                    methods = {HttpMethod.POST},[m
+[31m-                    authLevel = AuthorizationLevel.FUNCTION,[m
+[31m-                    route = "customers/{hash}"[m
+[31m-            ) HttpRequestMessage<Optional<CustomerDTO>> request,[m
+[31m-            final ExecutionContext context[m
+[31m-    ) {[m
+[32m+[m[32m                    methods = {HttpMethod.POST },[m
+[32m+[m[32m                    authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<CustomerDTO>> request,[m
+[32m+[m[32m            final ExecutionContext context) {[m
+[32m+[m[32m        context.getLogger().info("Java HTTP trigger processed a request.");[m
+         try {[m
+[31m-            context.getLogger().info("Java HTTP trigger processed a request.");[m
+             var customer = request.getBody().get();[m
+[31m-            var savedCustomer = saveCustomer.responseConvert(customer);[m
+[32m+[m[32m            addCustomer.responseConvert(customer);[m
+             return request[m
+                     .createResponseBuilder(HttpStatus.CREATED)[m
+[31m-                    .body(savedCustomer)[m
+[32m+[m[32m                    .body(customer)[m
+                     .build();[m
+         } catch (Exception e){[m
+             return request[m
+[36m@@ -41,5 +37,10 @@[m [mpublic class SaveCustomerHandler {[m
+                     .build();[m
+         }[m
+     }[m
+[32m+[m
+ }[m
+ [m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/handler/ValidateCustomerHandler.java b/src/main/java/br/com/sennatech/sddo/customers/handler/ValidateCustomerHandler.java[m
+[1mdeleted file mode 100644[m
+[1mindex 36fdd1c..0000000[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/handler/ValidateCustomerHandler.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,42 +0,0 @@[m
+[31m-package br.com.sennatech.sddo.customers.handler;[m
+[31m-[m
+[31m-import br.com.sennatech.sddo.customers.service.ValidateCustomer;[m
+[31m-import com.microsoft.azure.functions.*;[m
+[31m-import com.microsoft.azure.functions.annotation.AuthorizationLevel;[m
+[31m-import com.microsoft.azure.functions.annotation.BindingName;[m
+[31m-import com.microsoft.azure.functions.annotation.FunctionName;[m
+[31m-import com.microsoft.azure.functions.annotation.HttpTrigger;[m
+[31m-import lombok.RequiredArgsConstructor;[m
+[31m-import org.springframework.stereotype.Component;[m
+[31m-[m
+[31m-import java.util.logging.Logger;[m
+[31m-[m
+[31m-@Component[m
+[31m-@RequiredArgsConstructor[m
+[31m-public class ValidateCustomerHandler {[m
+[31m-[m
+[31m-    private final ValidateCustomer validateCustomer;[m
+[31m-[m
+[31m-    @FunctionName("customerValidation")[m
+[31m-    public HttpResponseMessage customerValidation([m
+[31m-            @HttpTrigger([m
+[31m-                    name = "req",[m
+[31m-                    methods = {HttpMethod.GET},[m
+[31m-                    authLevel = AuthorizationLevel.ANONYMOUS,[m
+[31m-                    route = "customers/{hash}"[m
+[31m-            ) HttpRequestMessage request,[m
+[31m-            @BindingName("hash") String hash,[m
+[31m-            final ExecutionContext context) {[m
+[31m-[m
+[31m-        Logger logger = context.getLogger();[m
+[31m-        logger.info("Incoming request, validating user with hash: [" + hash + "].");[m
+[31m-[m
+[31m-        try {[m
+[31m-            validateCustomer.validate(hash);[m
+[31m-            return request.createResponseBuilder(HttpStatus.OK).build();[m
+[31m-        } catch (Exception e) {[m
+[31m-            e.printStackTrace();[m
+[31m-            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()).build();[m
+[31m-        }[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/infra/exception/ExceptionHandler.java b/src/main/java/br/com/sennatech/sddo/customers/infra/exception/ExceptionHandler.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..21a3aac[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/infra/exception/ExceptionHandler.java[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32m//package br.com.sennatech.sddo.customers.infra.exception;[m
+[32m+[m[32m//[m
+[32m+[m[32m//import jakarta.persistence.EntityNotFoundException;[m
+[32m+[m[32m//import org.springframework.validation.FieldError;[m
+[32m+[m[32m//[m
+[32m+[m[32m//import java.sql.SQLIntegrityConstraintViolationException;[m
+[32m+[m[32m//[m
+[32m+[m[32m//@RestControllerAdvice[m
+[32m+[m[32m//public class ExceptionHandler {[m
+[32m+[m[32m//[m
+[32m+[m[32m//    @ExceptionHandler(EntityNotFoundException.class)[m
+[32m+[m[32m//    public ResponseEntity HandleError404(){[m
+[32m+[m[32m//        return ResponseEntity.notFound().build();[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//    @ExceptionHandler(MethodArgumentNotValidException.class)[m
+[32m+[m[32m//    public ResponseEntity  HandleError400(MethodArgumentNotValidException ex){[m
+[32m+[m[32m//        var error = ex.getFieldErrors();[m
+[32m+[m[32m//        return ResponseEntity.badRequest().body(error.stream().map(ValidationErrorDTO::new).toList());[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)[m
+[32m+[m[32m//    public ResponseEntity HandleNonUniqueEntryError(SQLIntegrityConstraintViolationException ex){[m
+[32m+[m[32m//        var sqlError = ex.getCause();[m
+[32m+[m[32m//        return ResponseEntity.badRequest().body(sqlError);[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private record ValidationErrorDTO(String field,String message){[m
+[32m+[m[32m//        public ValidationErrorDTO(FieldError error){[m
+[32m+[m[32m//            this(error.getField(),error.getDefaultMessage());[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    }[m
+[32m+[m[32m//}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/repository/CustomerRepository.java b/src/main/java/br/com/sennatech/sddo/customers/repository/CustomerRepository.java[m
+[1mindex f40b784..925441f 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/repository/CustomerRepository.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/repository/CustomerRepository.java[m
+[36m@@ -5,7 +5,8 @@[m [mimport org.springframework.data.jpa.repository.JpaRepository;[m
+ [m
+ import java.util.Optional;[m
+ [m
+[32m+[m
+ public interface CustomerRepository extends JpaRepository<Customer, String> {[m
+[32m+[m
+     Optional<Customer> findByDocumentNumber(String documentNumber);[m
+[31m-    Optional<Customer> findByEmail(String email);[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/SaveCustomer.java b/src/main/java/br/com/sennatech/sddo/customers/service/AddCustomer.java[m
+[1msimilarity index 81%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/service/SaveCustomer.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/service/AddCustomer.java[m
+[1mindex 10cf7b4..8d4890c 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/service/SaveCustomer.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/service/AddCustomer.java[m
+[36m@@ -1,6 +1,6 @@[m
+ package br.com.sennatech.sddo.customers.service;[m
+ [m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.CustomerDTO;[m
+ import br.com.sennatech.sddo.customers.repository.CustomerRepository;[m
+ import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerRequestToCustomer;[m
+ import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerToCustomerResponse;[m
+[36m@@ -9,7 +9,7 @@[m [mimport org.springframework.stereotype.Service;[m
+ [m
+ @Service[m
+ @AllArgsConstructor[m
+[31m-public class SaveCustomer {[m
+[32m+[m[32mpublic class AddCustomer {[m
+ [m
+     private final ConvertCustomerRequestToCustomer convertRequestToCustomer;[m
+     private final CustomerRepository repository;[m
+[36m@@ -17,6 +17,7 @@[m [mpublic class SaveCustomer {[m
+ [m
+     public CustomerDTO responseConvert(CustomerDTO request){[m
+         final var customer = convertRequestToCustomer.convert(request);[m
+[31m-        return convertCustomerToResponse.convert(repository.save(customer));[m
+[32m+[m[32m        return convertCustomerToResponse.responseConvert(repository.save(customer));[m
+     }[m
+[32m+[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/DeleteFuncionariosById.java b/src/main/java/br/com/sennatech/sddo/customers/service/DeleteFuncionariosById.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bad8f0b[m
+[1m--- /dev/null[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/service/DeleteFuncionariosById.java[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32mpackage br.com.sennatech.sddo.customers.service;[m
+[32m+[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.repository.CustomerRepository;[m
+[32m+[m[32mimport lombok.AllArgsConstructor;[m
+[32m+[m[32mimport org.springframework.stereotype.Service;[m
+[32m+[m
+[32m+[m[32m@Service[m
+[32m+[m[32m@AllArgsConstructor[m
+[32m+[m[32mpublic class DeleteFuncionariosById {[m
+[32m+[m
+[32m+[m[32m    private final CustomerRepository repository;[m
+[32m+[m
+[32m+[m[32m    public void execute(String id){[m
+[32m+[m[32m        repository.deleteById(id);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/GetCustomer.java b/src/main/java/br/com/sennatech/sddo/customers/service/ListFuncionariosById.java[m
+[1msimilarity index 63%[m
+[1mrename from src/main/java/br/com/sennatech/sddo/customers/service/GetCustomer.java[m
+[1mrename to src/main/java/br/com/sennatech/sddo/customers/service/ListFuncionariosById.java[m
+[1mindex 6455ffd..968c74b 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/service/GetCustomer.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/service/ListFuncionariosById.java[m
+[36m@@ -1,6 +1,6 @@[m
+ package br.com.sennatech.sddo.customers.service;[m
+ [m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.CustomerDTO;[m
+ import br.com.sennatech.sddo.customers.repository.CustomerRepository;[m
+ import br.com.sennatech.sddo.customers.service.converters.ConvertCustomerToCustomerResponse;[m
+ import jakarta.persistence.EntityNotFoundException;[m
+[36m@@ -9,15 +9,12 @@[m [mimport org.springframework.stereotype.Service;[m
+ [m
+ @Service[m
+ @AllArgsConstructor[m
+[31m-public class GetCustomer {[m
+[32m+[m[32mpublic class ListFuncionariosById {[m
+ [m
+     private final CustomerRepository repository;[m
+     private final ConvertCustomerToCustomerResponse convertCustomerToCustomerResponse;[m
+[31m-[m
+     public CustomerDTO execute(String id){[m
+[31m-        final var customer = repository[m
+[31m-                .findByDocumentNumber(id)[m
+[31m-                .orElseThrow(() -> new EntityNotFoundException("Customer not found."));[m
+[31m-        return convertCustomerToCustomerResponse.convert(customer);[m
+[32m+[m[32m        final var customer = repository.findByDocumentNumber(id).orElseThrow(() ->new EntityNotFoundException("Desculpe, dado não encontrado."));[m
+[32m+[m[32m        return convertCustomerToCustomerResponse.responseConvert(customer);[m
+     }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/ValidateCustomer.java b/src/main/java/br/com/sennatech/sddo/customers/service/ValidateCustomer.java[m
+[1mdeleted file mode 100644[m
+[1mindex dcf4f90..0000000[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/service/ValidateCustomer.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,28 +0,0 @@[m
+[31m-package br.com.sennatech.sddo.customers.service;[m
+[31m-[m
+[31m-import br.com.sennatech.sddo.customers.repository.CustomerRepository;[m
+[31m-import lombok.AllArgsConstructor;[m
+[31m-import org.springframework.stereotype.Service;[m
+[31m-[m
+[31m-import javax.naming.AuthenticationException;[m
+[31m-import java.util.Base64;[m
+[31m-[m
+[31m-@Service[m
+[31m-@AllArgsConstructor[m
+[31m-public class ValidateCustomer {[m
+[31m-[m
+[31m-    private final CustomerRepository repository;[m
+[31m-[m
+[31m-    public void validate(String hash) {[m
+[31m-        final var decodedHash = Base64.getDecoder().decode(hash);[m
+[31m-        final var splitDecodedHash = new String(decodedHash).split(":");[m
+[31m-[m
+[31m-        final var email = splitDecodedHash[0];[m
+[31m-        final var password = splitDecodedHash[1];[m
+[31m-[m
+[31m-        final var customer = repository.findByEmail(email).orElseThrow(() -> new RuntimeException("Customer not found"));[m
+[31m-        if (!customer.getPassword().equals(password)) {[m
+[31m-            throw new RuntimeException("Wrong password.");[m
+[31m-        }[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertAddressToAddressDTO.java b/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertAddressToAddressDTO.java[m
+[1mindex cb958ca..8f3b3ef 100644[m
+[1m--- a/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertAddressToAddressDTO.java[m
+[1m+++ b/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertAddressToAddressDTO.java[m
+[36m@@ -1,11 +1,13 @@[m
+ package br.com.sennatech.sddo.customers.service.converters;[m
+ [m
+ import br.com.sennatech.sddo.customers.domain.Address;[m
+[31m-import br.com.sennatech.sddo.customers.domain.dto.AddressDTO;[m
+[32m+[m[32mimport br.com.sennatech.sddo.customers.domain.AddressDTO;[m
+ import lombok.AllArgsConstructor;[m
+ import org.modelmapper.ModelMapper;[m
+ import org.springframework.stereotype.Component;[m
+ [m
+[32m+[m[32mimport java.time.format.DateTimeFormatter;[m
+[32m+[m
+ @Component[m
+ @AllArgsConstructor[m
+ public class ConvertAddressToAddressDTO {[m
+[1mdiff --git a/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertCustomerRequestToCustomer.java b/src/main/java/br/com/sennatech/sddo/customers/service/converters/ConvertCustomerRequ
