@@ -1,4 +1,4 @@
-package br.com.sennatech.sddo.customers.handler.customer;
+package br.com.sennatech.sddo.customers.handler.recovery;
 
 import java.util.Optional;
 
