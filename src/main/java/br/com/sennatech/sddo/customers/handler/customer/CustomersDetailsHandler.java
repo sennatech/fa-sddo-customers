@@ -2,6 +2,10 @@ package br.com.sennatech.sddo.customers.handler.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.*;
 
@@ -17,6 +21,9 @@ public class CustomersDetailsHandler {
   @Autowired
   private GetCustomer service;
 
+  @Autowired
+  ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
+
   @FunctionName("customers-details")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
@@ -29,7 +36,7 @@ public class CustomersDetailsHandler {
 
     try {
       return request.createResponseBuilder(HttpStatus.OK)
-          .body(service.run(documentNumber)).build();
+          .body(mapper.writeValueAsString(service.run(documentNumber))).build();
     } catch (EntityNotFoundException e) {
       return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage())).build();
     } catch (Exception e) {

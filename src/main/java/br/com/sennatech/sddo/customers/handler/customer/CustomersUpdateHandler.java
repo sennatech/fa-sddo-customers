@@ -2,6 +2,10 @@ package br.com.sennatech.sddo.customers.handler.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.*;
 
@@ -22,12 +26,15 @@ public class CustomersUpdateHandler {
   private UpdateCustomer service;
 
   @Autowired
-  private CustomerUpdateDTOtoCustomerDTO userUpdateDTOtoUserDTO;
+  private CustomerUpdateDTOtoCustomerDTO converter;
+
+  @Autowired
+  ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
 
   @FunctionName("customers-update")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
-          HttpMethod.PUT }, authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}") HttpRequestMessage<CustomerUpdateDTO> request,
+          HttpMethod.PUT }, authLevel = AuthorizationLevel.ANONYMOUS, route = "customers/{documentNumber}") HttpRequestMessage<String> request,
       @EventHubOutput(name = "event", eventHubName = Config.EVENT_HUB_NAME, connection = Config.CONN_STRING) OutputBinding<EventDTO> outputItem,
       @BindingName("documentNumber") String documentNumber,
       final ExecutionContext context) throws InterruptedException {
@@ -36,7 +43,7 @@ public class CustomersUpdateHandler {
     logger.logReq();
 
     try {
-      CustomerDTO customerDTO = userUpdateDTOtoUserDTO.apply(request.getBody(), documentNumber);
+      CustomerDTO customerDTO = converter.apply(mapper.readValue(request.getBody(), CustomerUpdateDTO.class), documentNumber);
       service.run(customerDTO);
       outputItem.setValue(EventDTO.create(context, "Customer [" + documentNumber + "] updated"));
       return request.createResponseBuilder(HttpStatus.ACCEPTED).build();
