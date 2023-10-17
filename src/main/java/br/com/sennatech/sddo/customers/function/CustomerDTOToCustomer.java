@@ -4,8 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sennatech.sddo.customers.model.Customer;
-import br.com.sennatech.sddo.customers.model.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.entity.Customer;
+
 import java.util.function.Function;
 
 @Component
@@ -15,9 +16,7 @@ public class CustomerDTOToCustomer implements Function<CustomerDTO, Customer> {
     private ModelMapper mapper;
 
     @Override
-    public Customer apply(CustomerDTO request){
-        final var customer = mapper.map(request, Customer.class);
-        return customer;
+    public Customer apply(CustomerDTO request) {
+        return mapper.map(request, Customer.class);
     }
-
 }

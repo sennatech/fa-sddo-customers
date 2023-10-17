@@ -4,8 +4,8 @@ import java.util.function.BiFunction;
 
 import org.springframework.stereotype.Component;
 
-import br.com.sennatech.sddo.customers.model.dto.CustomerDTO;
-import br.com.sennatech.sddo.customers.model.dto.CustomerUpdateDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerUpdateDTO;
 
 @Component
 public class CustomerUpdateDTOtoCustomerDTO implements BiFunction<CustomerUpdateDTO, String, CustomerDTO> {

@@ -2,7 +2,7 @@ package br.com.sennatech.sddo.customers.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.sennatech.sddo.customers.model.Customer;
+import br.com.sennatech.sddo.customers.domain.entity.Customer;
 
 import java.util.Optional;
 

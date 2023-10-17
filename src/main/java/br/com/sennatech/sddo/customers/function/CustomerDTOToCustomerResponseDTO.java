@@ -5,8 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sennatech.sddo.customers.model.dto.CustomerDTO;
-import br.com.sennatech.sddo.customers.model.dto.CustomerResponseDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerResponseDTO;
 
 @Component
 public class CustomerDTOToCustomerResponseDTO implements Function<CustomerDTO, CustomerResponseDTO> {

@@ -6,8 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sennatech.sddo.customers.model.Customer;
-import br.com.sennatech.sddo.customers.model.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
+import br.com.sennatech.sddo.customers.domain.entity.Customer;
 
 @Component
 public class CustomerUpdateEntity implements BiConsumer<Customer, CustomerDTO>{
