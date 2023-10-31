@@ -39,6 +39,6 @@ public class Customer {
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="address", nullable = false)
-    private CustomerAddress customeraAddress;
+    @JoinColumn(name="address_id", nullable = false)
+    private CustomerAddress customerAddress;
 }
