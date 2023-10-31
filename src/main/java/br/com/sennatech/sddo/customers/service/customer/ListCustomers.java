@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sennatech.sddo.customers.domain.dto.CustomerListDTO;
-import br.com.sennatech.sddo.customers.function.CustomerDTOToCustomerListDTO;
-import br.com.sennatech.sddo.customers.function.CustomerToCustomerDTO;
+import br.com.sennatech.sddo.customers.function.CustomerToCustomerListDTO;
 import br.com.sennatech.sddo.customers.repository.CustomerRepository;
 
 @Service
@@ -18,13 +17,10 @@ public class ListCustomers {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private CustomerToCustomerDTO toDTO;
-
-    @Autowired
-    private CustomerDTOToCustomerListDTO toListDTO;
+    private CustomerToCustomerListDTO toListDTO;
 
     public List<CustomerListDTO> run() {
-        return customerRepository.findAll().stream().map(customer -> toListDTO.apply(toDTO.apply(customer)))
+        return customerRepository.findAll().stream().map(customer -> toListDTO.apply(customer))
                 .collect(Collectors.toList());
     }
 }

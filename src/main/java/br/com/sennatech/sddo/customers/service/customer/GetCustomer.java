@@ -21,6 +21,6 @@ public class GetCustomer {
     public CustomerDTO run(String documentNumber) {
         Customer customer = customerRepository.findById(documentNumber)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        return converter.apply(customer);
+        return converter.apply(customer, customer.getCustomerAddress());
     }
 }
