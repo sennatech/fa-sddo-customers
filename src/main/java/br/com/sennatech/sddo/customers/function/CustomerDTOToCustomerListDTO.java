@@ -12,6 +12,6 @@ public class CustomerDTOToCustomerListDTO implements Function<CustomerDTO, Custo
 
   @Override
   public CustomerListDTO apply(CustomerDTO customerDTO) {
-    return new CustomerListDTO(customerDTO.getDocumentNumber(), customerDTO.getName());
+    return CustomerListDTO.builder().documentNumber(customerDTO.getDocumentNumber()).email(customerDTO.getEmail()).name(customerDTO.getName()).build();
   }
 }
