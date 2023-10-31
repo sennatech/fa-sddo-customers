@@ -1,6 +1,6 @@
-package br.com.sennatech.sddo.customers.domain.entity;
+package br.com.sennatech.sddo.customers.domain.dto;
 
-import jakarta.persistence.Embeddable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
-public class Address {
+public class CustomerAddressDTO {
+    private Long id;
     private String street;
     private String number;
     private String neighbourhood;
     private String city;
     private String state;
     private String country;
-    private String zipCode;
-    private String complement;
+    private Long zipcode;
 }
+

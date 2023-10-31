@@ -38,6 +38,7 @@ public class Customer {
     @Column(length = 9, nullable = false)
     private String phone;
 
-    @Embedded
-    private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id", nullable = false)
+    private CustomerAddress customerAddress;
 }

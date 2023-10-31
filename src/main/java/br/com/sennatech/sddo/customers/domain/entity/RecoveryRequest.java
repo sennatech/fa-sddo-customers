@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "password_recovery_request")
+@Table(name = "customers_password_recovery_requests")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

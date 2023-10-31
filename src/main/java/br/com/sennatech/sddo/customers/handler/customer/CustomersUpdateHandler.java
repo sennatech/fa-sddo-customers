@@ -26,7 +26,7 @@ public class CustomersUpdateHandler {
   private UpdateCustomer service;
 
   @Autowired
-  private CustomerUpdateDTOtoCustomerDTO converter;
+  private CustomerReducedDTOtoCustomerDTO converter;
 
   @Autowired
   ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
@@ -43,7 +43,7 @@ public class CustomersUpdateHandler {
     logger.logReq();
 
     try {
-      CustomerDTO customerDTO = converter.apply(mapper.readValue(request.getBody(), CustomerUpdateDTO.class), documentNumber);
+      CustomerDTO customerDTO = converter.apply(mapper.readValue(request.getBody(), CustomerReducedDTO.class), documentNumber);
       service.run(customerDTO);
       outputItem.setValue(EventDTO.create(context, "Customer [" + documentNumber + "] updated"));
       return request.createResponseBuilder(HttpStatus.ACCEPTED).build();

@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO{
-    private String documentNumber;
+public class CustomerReducedDTO {
     private String name;
     private LocalDate birthdate;
     private Gender gender;
