@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class CustomerListDTO {
-    String documentNumber;
-    String email;
-    String name;
+    private String documentNumber;
+    private String email;
+    private String name;
 }
 
