@@ -32,7 +32,7 @@ public class PasswordRecoveryReqHandler {
       service.run(request.getBody());
       return request.createResponseBuilder(HttpStatus.CREATED).build();
     } catch (EntityNotFoundException e) {
-      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage()))
+      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage())).header("content-type", "application/json")
           .build();
     } catch (Exception e) {
       logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));

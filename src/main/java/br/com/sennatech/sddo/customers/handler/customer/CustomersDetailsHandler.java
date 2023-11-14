@@ -32,9 +32,9 @@ public class CustomersDetailsHandler {
 
     try {
       return request.createResponseBuilder(HttpStatus.OK)
-          .body(mapper.writeValueAsString(service.run(documentNumber))).build();
+          .body(mapper.writeValueAsString(service.run(documentNumber))).header("content-type", "application/json").build();
     } catch (EntityNotFoundException e) {
-      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage())).build();
+      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage())).header("content-type", "application/json").build();
     } catch (Exception e) {
       logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));
       return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).build();

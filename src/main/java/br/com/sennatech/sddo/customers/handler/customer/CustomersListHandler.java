@@ -32,7 +32,7 @@ public class CustomersListHandler {
 
     try {
       List<CustomerListDTO> customerListDTOs = service.run();
-      return request.createResponseBuilder(HttpStatus.OK).body(mapper.writeValueAsString(customerListDTOs)).build();
+      return request.createResponseBuilder(HttpStatus.OK).body(mapper.writeValueAsString(customerListDTOs)).header("content-type", "application/json").build();
     } catch (Exception e) {
       logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));
       return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).build();

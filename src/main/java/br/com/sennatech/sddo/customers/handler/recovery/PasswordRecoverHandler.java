@@ -33,7 +33,7 @@ public class PasswordRecoverHandler {
       service.run(hash, request.getBody().getNewPassword());
       return request.createResponseBuilder(HttpStatus.ACCEPTED).build();
     } catch (EntityNotFoundException e) {
-      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage()))
+      return request.createResponseBuilder(HttpStatus.NOT_FOUND).body(ResponseDTO.create(e.getMessage())).header("content-type", "application/json")
           .build();
     } catch (Exception e) {
       logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));

@@ -37,7 +37,7 @@ public class CustomersPasswordUpdateHandler {
             return request.createResponseBuilder(HttpStatus.OK).build();
         } catch (EntityNotFoundException | InvalidCredentialException e) {
             int code = (e instanceof EntityNotFoundException) ? 404 : 400;
-            return request.createResponseBuilder(HttpStatus.valueOf(code)).body(ResponseDTO.create(e.getMessage()))
+            return request.createResponseBuilder(HttpStatus.valueOf(code)).body(ResponseDTO.create(e.getMessage())).header("content-type", "application/json")
                     .build();
         } catch (Exception e) {
             logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));
