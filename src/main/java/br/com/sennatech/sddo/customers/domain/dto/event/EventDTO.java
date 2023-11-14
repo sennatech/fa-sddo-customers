@@ -23,7 +23,7 @@ public class EventDTO {
     }
     this.domain = "Seguros";
     this.operation = Operation.get(context.getFunctionName());
-    this.timestamp = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(new Date());
+    this.timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
   }
 
   public static EventDTO create(ExecutionContext context, Object... dataObjects) {
