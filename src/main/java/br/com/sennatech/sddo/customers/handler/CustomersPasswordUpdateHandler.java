@@ -27,7 +27,9 @@ public class CustomersPasswordUpdateHandler {
     @FunctionName("customers-password-update")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {
-                    HttpMethod.PUT }, authLevel = AuthorizationLevel.FUNCTION, route = "customers/password/{documentNumber}") HttpRequestMessage<PasswordRequestDTO> request,
+                    HttpMethod.PUT }, authLevel = AuthorizationLevel.FUNCTION,
+                    route = "customers/password/{documentNumber}")
+            HttpRequestMessage<PasswordRequestDTO> request,
             @BindingName("documentNumber") String documentNumber,
             final ExecutionContext context) {
 
