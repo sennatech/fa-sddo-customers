@@ -1,6 +1,5 @@
 package br.com.sennatech.sddo.customers.handler.recovery;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.microsoft.azure.functions.*;
@@ -12,19 +11,20 @@ import br.com.sennatech.sddo.customers.service.recovery.RecoverPassword;
 import br.com.sennatech.sddo.customers.util.ExceptionUtil;
 import br.com.sennatech.sddo.customers.util.LoggerUtil;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class PasswordRecoverHandler {
 
-  @Autowired
-  private RecoverPassword service;
+  private final RecoverPassword service;
 
   @FunctionName("customers-password-recovery")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
           HttpMethod.PUT }, authLevel = AuthorizationLevel.FUNCTION, route = "customers/password/recovery/{hash}") HttpRequestMessage<RecoveryDTO> request,
       @BindingName("hash") String hash,
-      final ExecutionContext context) throws InterruptedException {
+      final ExecutionContext context) {
 
     LoggerUtil logger = LoggerUtil.create(context, request);
     logger.logReq();

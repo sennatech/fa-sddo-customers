@@ -2,30 +2,55 @@ package br.com.sennatech.sddo.customers.service.customer;
 
 import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sennatech.sddo.customers.domain.entity.Customer;
 import br.com.sennatech.sddo.customers.exception.CustomerValidationException;
 import br.com.sennatech.sddo.customers.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ValidateCustomer {
 
-  @Autowired
-  private CustomerRepository customerRepository;
+  private final CustomerRepository customerRepository;
 
   public void run(String hash) {
-    String decodedHash = new String(Base64.getDecoder().decode(hash)); // Decodificando o hash base64 para uma string
+    // Decoding the hash from Base64 to a string
+    byte[] decodedBytes = Base64.getDecoder().decode(hash);
+    String decodedHash = new String(decodedBytes);
+
+    // Checking for the presence of the ':' delimiter
     if (!decodedHash.contains(":")) {
       throw new CustomerValidationException("Wrong format");
-    } // Verificando se a String decodificada contém o ':' (padrão utilizado email:senha)
-    String[] decodedHashSplitted = decodedHash.split(":"); // Splitando String entre o ':' para um array de String
-    String email = decodedHashSplitted[0]; // Guardando o index 0 do array (no caso o email)
-    String password = decodedHashSplitted[1]; // Guardando o index 1 do array (no caso a senha)
-    Customer user = customerRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("User not found"));
-    if (!user.getPassword().equals(password)) // Verificando se a senha é igual a registrada do DB
+    }
+
+    // Splitting the decoded string using the ':' delimiter
+    String[] decodedHashSplitted = decodedHash.split(":", 2); // Limiting the split to 2 parts
+    String email = decodedHashSplitted[0];
+    String password = decodedHashSplitted[1];
+
+    // Fetching the user from the repository by email
+    Customer user = customerRepository.findByEmail(email)
+        .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+    // Comparing passwords securely using constant-time comparison
+    if (!passwordsMatch(user.getPassword(), password)) {
       throw new CustomerValidationException("Wrong password");
+    }
+  }
+
+  // Constant-time comparison of passwords to avoid timing attacks
+  private boolean passwordsMatch(String passwordInDB, String enteredPassword) {
+    if (passwordInDB.length() != enteredPassword.length()) {
+      return false;
+    }
+
+    int result = 0;
+    for (int i = 0; i < passwordInDB.length(); i++) {
+      result |= passwordInDB.charAt(i) ^ enteredPassword.charAt(i);
+    }
+    return result == 0;
   }
 }

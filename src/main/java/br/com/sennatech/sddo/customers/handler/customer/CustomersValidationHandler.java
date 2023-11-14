@@ -1,6 +1,5 @@
 package br.com.sennatech.sddo.customers.handler.customer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.microsoft.azure.functions.*;
@@ -12,19 +11,20 @@ import br.com.sennatech.sddo.customers.service.customer.ValidateCustomer;
 import br.com.sennatech.sddo.customers.util.ExceptionUtil;
 import br.com.sennatech.sddo.customers.util.LoggerUtil;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class CustomersValidationHandler {
 
-  @Autowired
-  private ValidateCustomer service;
+  private final ValidateCustomer service;
 
   @FunctionName("customers-validate")
   public HttpResponseMessage run(
       @HttpTrigger(name = "req", methods = {
           HttpMethod.GET }, authLevel = AuthorizationLevel.ANONYMOUS, route = "customers-validation/{hash}") HttpRequestMessage<String> request,
       @BindingName("hash") String hash,
-      final ExecutionContext context) throws InterruptedException {
+      final ExecutionContext context) {
 
     LoggerUtil logger = LoggerUtil.create(context, request);
     logger.logReq();
