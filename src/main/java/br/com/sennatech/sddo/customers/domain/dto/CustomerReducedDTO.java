@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerReducedDTO {
     private String name;
+    
     private LocalDate birthdate;
     private Gender gender;
     private String login;

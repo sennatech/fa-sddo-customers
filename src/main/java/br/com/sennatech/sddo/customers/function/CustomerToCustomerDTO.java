@@ -1,18 +1,18 @@
 package br.com.sennatech.sddo.customers.function;
 
 import java.util.function.BiFunction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.sennatech.sddo.customers.domain.dto.CustomerDTO;
 import br.com.sennatech.sddo.customers.domain.entity.Customer;
 import br.com.sennatech.sddo.customers.domain.entity.CustomerAddress;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerToCustomerDTO implements BiFunction<Customer, CustomerAddress, CustomerDTO> {
 
-    @Autowired
-    private AddressToAddressDTO addressToAddressDTO;
+    private final AddressToAddressDTO addressToAddressDTO;
 
     @Override
     public CustomerDTO apply(Customer customer, CustomerAddress customerAddress){

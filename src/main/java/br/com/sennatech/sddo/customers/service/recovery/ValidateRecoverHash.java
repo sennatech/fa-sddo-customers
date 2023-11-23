@@ -3,7 +3,6 @@ package br.com.sennatech.sddo.customers.service.recovery;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sennatech.sddo.customers.config.Config;
@@ -11,12 +10,13 @@ import br.com.sennatech.sddo.customers.domain.entity.RecoveryRequest;
 import br.com.sennatech.sddo.customers.exception.InvalidRecoveryHashException;
 import br.com.sennatech.sddo.customers.repository.PasswordRecoveryRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ValidateRecoverHash {
 
-  @Autowired
-  PasswordRecoveryRepository passwordRecoveryRepository;
+  private final PasswordRecoveryRepository passwordRecoveryRepository;
 
   public void run(String hash) {
     RecoveryRequest request = passwordRecoveryRepository.findById(hash).orElseThrow(() -> new EntityNotFoundException("Password recovery request not found"));

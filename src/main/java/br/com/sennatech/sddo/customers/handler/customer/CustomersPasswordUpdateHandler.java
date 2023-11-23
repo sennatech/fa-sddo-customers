@@ -7,28 +7,27 @@ import br.com.sennatech.sddo.customers.service.customer.UpdateCustomerPassword;
 import br.com.sennatech.sddo.customers.util.ExceptionUtil;
 import br.com.sennatech.sddo.customers.util.LoggerUtil;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.BindingName;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CustomersPasswordUpdateHandler {
 
-    @Autowired
-    private UpdateCustomerPassword service;
+    private final UpdateCustomerPassword service;
 
     @FunctionName("customers-password-update")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {
                     HttpMethod.PUT }, authLevel = AuthorizationLevel.FUNCTION, route = "customers/password/{documentNumber}") HttpRequestMessage<PasswordChangeDTO> request,
             @BindingName("documentNumber") String documentNumber,
-            final ExecutionContext context) throws InterruptedException {
+            final ExecutionContext context) {
 
         LoggerUtil logger = LoggerUtil.create(context, request);
         logger.logReq();
@@ -38,7 +37,7 @@ public class CustomersPasswordUpdateHandler {
             return request.createResponseBuilder(HttpStatus.OK).build();
         } catch (EntityNotFoundException | InvalidCredentialException e) {
             int code = (e instanceof EntityNotFoundException) ? 404 : 400;
-            return request.createResponseBuilder(HttpStatus.valueOf(code)).body(ResponseDTO.create(e.getMessage()))
+            return request.createResponseBuilder(HttpStatus.valueOf(code)).body(ResponseDTO.create(e.getMessage())).header("content-type", "application/json")
                     .build();
         } catch (Exception e) {
             logger.info("Error:\n" + ExceptionUtil.stackTraceToString(e));

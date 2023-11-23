@@ -1,7 +1,6 @@
 package br.com.sennatech.sddo.customers.service.recovery;
 
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sennatech.sddo.customers.config.Config;
@@ -14,21 +13,16 @@ import br.com.sennatech.sddo.customers.service.smtp.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class RequestRecovery {
 
-  @Autowired
-  private CustomerRepository customerRepository;
-
-  @Autowired
-  private PasswordRecoveryRepository passwordRecoveryRepository;
-
-  @Autowired
-  private EmailService emailService;
-
-  @Autowired
-  private CreateRecoveryRequestFromDTO createRecoveryRequestFromDTO;
+  private final CustomerRepository customerRepository;
+  private final PasswordRecoveryRepository passwordRecoveryRepository;
+  private final EmailService emailService;
+  private final CreateRecoveryRequestFromDTO createRecoveryRequestFromDTO;
 
   @Transactional
   public void run(RecoveryRequestDTO request) throws IOException, MessagingException {
