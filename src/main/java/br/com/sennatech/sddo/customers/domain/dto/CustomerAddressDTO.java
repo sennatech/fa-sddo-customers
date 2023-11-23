@@ -16,5 +16,6 @@ public class CustomerAddressDTO {
     private String state;
     private String country;
     private Long zipcode;
+    private String complement;
 }
 
