@@ -1,2 +1,2 @@
-# fa-sddo-customers
-Repositório de código para os recursos referentes à clientes do projeto SDDO 
+# fa-assegurae-customers
+Repositório de código para os recursos referentes à clientes do projeto ASSEGURAÊ.
